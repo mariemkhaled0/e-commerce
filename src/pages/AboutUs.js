@@ -4,17 +4,17 @@ import { Link } from "react-router-dom";
 
 const AboutUs = () => {
   return (
-    <section className="mb-20">
+    <section className="mb-20 dark:bg-black dark:text-white">
       <PageHeading home="Home" pagename="About" />
-      <div className="w-10/12 m-auto">
-        <div className="max-w-4xl mx-auto bg-white  rounded-2xl p-8">
+      <div className="w-10/12 m-auto dark:bg-black dark:text-white">
+        <div className="max-w-4xl mx-auto bg-white  rounded-2xl p-8 dark:bg-black dark:text-white">
           {/* Heading */}
           <h1 className="text-3xl font-bold text-gray-800 text-center mb-6">
             About Us
           </h1>
 
           {/* Intro */}
-          <p className="text-gray-600 text-lg text-center mb-10">
+          <p className="text-gray-600 text-lg text-center mb-10 dark:bg-black dark:text-white">
             Welcome to <span className="font-semibold">Our E-Commerce</span> —
             where shopping meets trust, quality, and care.
           </p>
@@ -22,7 +22,7 @@ const AboutUs = () => {
           {/* Sections */}
           <div className="space-y-8">
             {/* Our Story */}
-            <section>
+            <section className="dark:bg-black dark:text-white">
               <h2 className="text-xl font-semibold text-gray-800 mb-2">
                 Our Story
               </h2>

@@ -73,9 +73,9 @@ const Shop = () => {
     <div>
       <PageHeading home={"home"} pagename={"Shop"} />
       <div className="w-10/12 m-auto flex gap-3 items-start mt-8 ">
-        <div className="filterproduct  bg-white shadow-lg p-4">
+        <div className="filterproduct dark:text-black dark:bg-gray-200 bg-white shadow-lg p-6 rounded-lg">
           <h1 className="text-3xl font-semibold mb-4">Filter</h1>
-          <div className="my-4">
+          <div className="my-4 ">
             <h1 className="mb-3 text-xl font-semibold">By Price</h1>
             <Slider
               min={0}

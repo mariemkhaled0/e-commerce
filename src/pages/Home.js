@@ -8,7 +8,7 @@ import Arrived from "../Components/Arrived";
 
 const Home = () => {
   return (
-    <div>
+    <div className="dark:bg-black">
       <Bannar />
       <Category />
       <FlashSale />

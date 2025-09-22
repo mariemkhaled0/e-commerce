@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { navbar } from "../Data/data";
 import { HiOutlineHeart, HiOutlineUser } from "react-icons/hi";
@@ -6,8 +6,9 @@ import { MdOutlineShoppingBag } from "react-icons/md";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import Sidebar from "./Sidebar";
 import { useSelector } from "react-redux";
+import { DarkModeIcon, SunIcon } from "../Icons";
 
-const Header = () => {
+const Header = ({ darkMode, setDarkMode }) => {
   const [nav, setNav] = useState(false);
   const [sidebar, setSidebar] = useState(false);
   const total = useSelector((store) => store.cart.totalItems);
@@ -19,8 +20,40 @@ const Header = () => {
     setSidebar(!sidebar);
   };
 
+  // Load theme from localStorage on mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      if (savedTheme === "dark") {
+        setDarkMode(true);
+        document.documentElement.classList.add("dark");
+      } else {
+        setDarkMode(false);
+        document.documentElement.classList.remove("dark");
+      }
+    } else {
+      // if nothing in localStorage, respect system preference
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        setDarkMode(true);
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("theme", "dark");
+      }
+    }
+  }, []);
+
+  // Update when darkMode changes
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [darkMode]);
+
   return (
-    <header className="fixed top-0 w-full z-50 flex pt-3 shadow-xl p-6 bg-white">
+    <header className="fixed dark:bg-black dark:text-white top-0 w-full z-50 flex pt-3 shadow-xl p-6 dark:py-7  bg-white">
       <div className="w-10/12 flex justify-between  m-auto items-center">
         <h1 className="font-bold text-2xl">miniture</h1>
         <nav>
@@ -39,7 +72,14 @@ const Header = () => {
           </ul>
         </nav>
 
-        <div className="flex gap-2">
+        <div className="flex gap-2 items-center">
+          <button onClick={() => setDarkMode(!darkMode)}>
+            {darkMode ? (
+              <SunIcon className={"dark:text-white"} />
+            ) : (
+              <DarkModeIcon className="mt-1" />
+            )}
+          </button>
           <Link to="/favourite">
             <HiOutlineHeart size={20} />
           </Link>

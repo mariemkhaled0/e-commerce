@@ -17,13 +17,27 @@ import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import Profile from "./pages/Profile";
 import SignupPage from "./pages/SignUp";
+import { useEffect, useState } from "react";
 
 function App() {
+  const getSavedTheme = () => localStorage.getItem("theme") || "light";
+  const saveTheme = (theme) => localStorage.setItem("theme", theme);
+  const [darkMode, setDarkMode] = useState(getSavedTheme() === "dark");
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+      saveTheme("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      saveTheme("light");
+    }
+  }, [darkMode]);
   return (
-    <div className="">
+    <div className="dark:bg-black dark:text-white">
       <AuthProvider>
         <Router>
-          <Header />
+          <Header darkMode={darkMode} setDarkMode={setDarkMode} />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/cart" element={<Cart />} />

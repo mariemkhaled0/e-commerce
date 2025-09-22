@@ -33,19 +33,19 @@ const Cart = () => {
         <PageHeading home={"Home"} pagename={"Cart"} />
         {cartItems.length > 0 ? (
           <div className="w-10/12 m-auto mt-5 ">
-            <div className="  grid grid-cols-4  px-6 py-1  bg-gray-900 text-white">
+            <div className="  grid grid-cols-4  px-6 py-1 rounded-lg bg-gray-900 dark:bg-gray-800 text-white">
               <p>Product</p>
               <p>price</p>
               <p>quantity</p>
               <p>SubTotal</p>
             </div>
-            <div className="bg-gray-100 shadow-xl  p-2 mt-4">
+            <div className="bg-gray-100 dark:bg-gray-300 rounded-lg shadow-xl dark:text-black  p-6 mt-4">
               {cartItems.map((item, key) => (
                 <div
                   className="grid relative  gap-6 grid-cols-4 justify-between items-center mb-2"
                   key={key}
                 >
-                  <div className=" flex items-center">
+                  <div className=" flex items-center rounded-lg dark:text-black ">
                     <FaTimes
                       onClick={() => removeFromCart(item.id)}
                       className="text-red-700 cursor-pointer  md:mr-3 absolute right-0 top-2 md:top-3 "
@@ -79,7 +79,7 @@ const Cart = () => {
                 </div>
               ))}
             </div>
-            <div className="md:w-5/12 w-10/12 bg-gray-100 mt-5 p-3  rounded-xl">
+            <div className="md:w-5/12 w-10/12 bg-gray-100 mt-5 p-3 dark:text-black p-6 rounded-xl">
               <h1 className="text-center font-bold  text-xl">Cart total</h1>
               <div className="flex justify-between font-bold">
                 <p>SubTotal :</p>

@@ -10,7 +10,7 @@ const Favourite = () => {
   console.log(favItems);
 
   return (
-    <section className="mb-20 ">
+    <section className="mb-20 dark:bg-black ">
       <PageHeading home="home" pagename="favourite" />
       <div className="w-10/12 m-auto">
         {favItems.length > 0 ? (

@@ -15,7 +15,7 @@ const Contact = () => {
       <PageHeading home="Home" pagename="Contact" />
       <div className="w-10/12 m-auto">
         <div className="min-h-screen py-12 px-6">
-          <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-2xl p-8">
+          <div className="max-w-4xl mx-auto dark:bg-gray-200 bg-white shadow-lg rounded-2xl p-8">
             {!submitted ? (
               <>
                 {/* Heading */}
