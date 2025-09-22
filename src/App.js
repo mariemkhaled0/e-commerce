@@ -33,6 +33,9 @@ function App() {
       saveTheme("light");
     }
   }, [darkMode]);
+
+  console.log(process.env.REACT_APP_FIREBASE_API_KEY);
+
   return (
     <div className="dark:bg-black dark:text-white">
       <AuthProvider>
@@ -61,6 +64,7 @@ function App() {
           <Footer />
         </Router>
       </AuthProvider>
+
       <Toaster position="top-right" reverseOrder={false} />
     </div>
   );
