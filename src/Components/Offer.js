@@ -9,7 +9,7 @@ const Offer = () => {
           <img
             className="  m-auto rounded-lg"
             alt={item.title}
-            src={item.customer_img}
+            src={`${process.env.PUBLIC_URL}${item.customer_img}`}
           />
           <div className="absolute top-0  right-0">
             <p className="bg-white  right-2  rounded-e-none absolute w-fit text-sm p-2 rounded-3xl">

@@ -18,7 +18,7 @@ const Favourite = () => {
             {favItems.map((item, index) => (
               <div key={index}>
                 <Link to={`/details/${item.title}`}>
-                  <img alt="img" src={item.img} />
+                  <img alt="img" src={`${process.env.PUBLIC_URL}${item.img}`} />
                 </Link>
 
                 <p>{item.title}</p>

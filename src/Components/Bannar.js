@@ -67,7 +67,7 @@ const Bannar = () => {
               <div key={index}>
                 <img
                   className="rounded-2xl"
-                  src={item.banner}
+                  src={`${process.env.PUBLIC_URL}${item.banner}`}
                   alt={`banner-${index}`}
                 />
               </div>

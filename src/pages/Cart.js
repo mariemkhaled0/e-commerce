@@ -51,7 +51,11 @@ const Cart = () => {
                       className="text-red-700 cursor-pointer  md:mr-3 absolute right-0 top-2 md:top-3 "
                     />
                     <div className="flex md:flex-row flex-col items-center justify-center">
-                      <img className="w-[100px]" alt="img" src={item.img} />
+                      <img
+                        className="w-[100px]"
+                        alt="img"
+                        src={`${process.env.PUBLIC_URL}${item.img}`}
+                      />
                       <p className="ml-2 font-bold">{item.title}</p>{" "}
                     </div>
                   </div>

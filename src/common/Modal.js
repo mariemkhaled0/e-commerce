@@ -32,14 +32,14 @@ const Modal = ({ modal, handleCloseModal }) => {
   };
 
   return (
-    <div className="fixed w-full h-full top-0 left-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
+    <div className="fixed z-50 w-full h-full top-0 left-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
       <div className="bg-white w-11/12 sm:w-10/12 md:w-8/12 relative  p-5 m-auto rounded-lg">
         {modal && (
           <div className=" px-3  flex justify-center gap-4">
             <img
               className="w-[80px] h-[80px] md:w-[20%] md:h-[20%] lg:w-[30%] lg:h-[30%] "
               alt={modal.title}
-              src={modal.img}
+              src={`${process.env.PUBLIC_URL}${modal.img}`}
             />
             <div>
               <p className="font-bold ">{modal.title}</p>

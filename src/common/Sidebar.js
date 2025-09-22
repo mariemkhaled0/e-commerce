@@ -44,7 +44,11 @@ const Sidebar = ({ handelSidebar, sidebar }) => {
               >
                 <div className="flex items-center">
                   <Link to={`/details/${item.title}`}>
-                    <img className="w-[70px]" alt="img" src={item.img} />
+                    <img
+                      className="w-[70px]"
+                      alt="img"
+                      src={`${process.env.PUBLIC_URL}${item.img}`}
+                    />
                   </Link>
 
                   <p className="text-xs ml-2">{item.title}</p>

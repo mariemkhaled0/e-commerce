@@ -1,5 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const getCartFromLocalStorage = () => {
+  if (typeof window !== "undefined") {
+    const cart = localStorage.getItem("cart");
+    return cart ? JSON.parse(cart) : [];
+  }
+  return [];
+};
+const calculateTotals = (data) => {
+  const totalPrice = data.reduce((acc, item) => acc + item.totalPrice, 0);
+  const totalItems = data.reduce((acc, item) => acc + item.quantity, 0);
+  return { totalPrice, totalItems };
+};
+
+const initialData = getCartFromLocalStorage();
+const { totalPrice, totalItems } = calculateTotals(initialData);
+
 const storeInLocalStorage = (data) => {
   localStorage.setItem("cart", JSON.stringify(data));
 };
@@ -7,37 +23,40 @@ const storeInLocalStorage = (data) => {
 const CartSlice = createSlice({
   name: "cart",
   initialState: {
-    data: [],
-    totalItems: 0,
-    totalPrice: 0,
+    data: getCartFromLocalStorage(),
+    totalItems,
+    totalPrice,
   },
 
   reducers: {
     addToCart: (state, action) => {
-      const existingItem = state.data.find(
+      const existingItemIndex = state.data.findIndex(
         (item) => item.id === action.payload.id
       );
-      if (existingItem) {
-        const tempCart = state.data.map((item) => {
-          if (item.id === action.payload.id) {
-            let newQuantity = item.quantity + action.payload.quantity;
-            let newTotalPrice = newQuantity + item.price;
-            return {
-              ...item,
-              quantity: newQuantity,
-              totalPrice: newTotalPrice,
-            };
-          } else {
-            return item;
-          }
-        });
-        state.data = tempCart;
-        storeInLocalStorage(state.data);
+
+      if (existingItemIndex !== -1) {
+        // ✅ المنتج موجود بالفعل → نحدثه
+        const existingItem = state.data[existingItemIndex];
+        const newQuantity = existingItem.quantity + action.payload.quantity;
+
+        state.data[existingItemIndex] = {
+          ...existingItem,
+          quantity: newQuantity,
+          totalPrice: existingItem.price * newQuantity,
+        };
       } else {
-        state.data.push(action.payload);
-        storeInLocalStorage(state.data);
+        state.data.push({
+          ...action.payload,
+          totalPrice: action.payload.price * action.payload.quantity,
+        });
       }
+
+      const totals = calculateTotals(state.data);
+      state.totalItems = totals.totalItems;
+      state.totalPrice = totals.totalPrice;
+      storeInLocalStorage(state.data);
     },
+
     updateQuantity: (state, action) => {
       const { id, quantity } = action.payload;
       const productIndex = state.data.findIndex((item) => item.id === id);
@@ -59,11 +78,9 @@ const CartSlice = createSlice({
       storeInLocalStorage(state.data);
     },
     getCartTotal: (state) => {
-      const getTotalPrice = state.data.reduce((acc, current) => {
-        return (acc += current.totalPrice);
-      }, 0);
-      state.totalPrice = getTotalPrice;
-      state.totalItems = state.data.length;
+      const { totalPrice, totalItems } = calculateTotals(state.data);
+      state.totalPrice = totalPrice;
+      state.totalItems = totalItems;
     },
   },
 });

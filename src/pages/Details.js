@@ -62,7 +62,11 @@ const Details = () => {
     <section className="w-9/12 m-auto p-10">
       {details ? (
         <div className="gap-6 grid md:grid-cols-2">
-          <img className="mr-3 rounded-3xl" alt="img" src={details.img} />
+          <img
+            className="mr-3 rounded-3xl"
+            alt="img"
+            src={`${process.env.PUBLIC_URL}${details.img}`}
+          />
           <div>
             <p className="font-bold text-2xl">{details.title}</p>
             <p className="mt-2 text-gray-600">{details.description}</p>

@@ -5,7 +5,7 @@ import { FaInstagram } from "react-icons/fa";
 
 const Arrived = () => {
   return (
-    <section className="w-10/12  m-auto">
+    <section className="w-10/12 z-0  m-auto">
       <Heading heading={"Just Arrived"} />
       <div className="flex mt-9 flex-col md:flex-row md-gap-3 gap-10 md:justify-start items-center justify-center m-auto">
         <div className="flex flex-col lg:text-left md:text-left items-center justify-center mr-6">
@@ -30,7 +30,7 @@ const Arrived = () => {
                   <img
                     className="rounded-3xl hover:scale-110 transition-all duration-500"
                     alt="img"
-                    src={item.img}
+                    src={`${process.env.PUBLIC_URL}${item.img}`}
                   />
                   <div className="absolute p-1 bottom-0 right-[-3px] md:p-2 bg-white  rounded-xl">
                     <div className="p-1 rounded-full">

@@ -120,7 +120,7 @@ const ProductGrid = ({
                 <img
                   className="rounded-3xl cursor-pointer"
                   alt={item.title}
-                  src={item.img}
+                  src={`${process.env.PUBLIC_URL}${item.img}`}
                 />
                 <div className="ml-4 mt-2">
                   <p>{item.title}</p>
@@ -164,7 +164,7 @@ const ProductGrid = ({
                 <img
                   className="rounded-3xl cursor-pointer"
                   alt={item.title}
-                  src={item.img}
+                  src={`${process.env.PUBLIC_URL}${item.img}`}
                 />
                 <div className="">
                   <p>{item.title}</p>

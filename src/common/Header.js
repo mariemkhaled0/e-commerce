@@ -43,7 +43,7 @@ const Header = () => {
           <Link to="/favourite">
             <HiOutlineHeart size={20} />
           </Link>
-          <Link>
+          <Link to="profile">
             <HiOutlineUser size={20} />
           </Link>
           <Link className="relative" onClick={handelSidebar}>

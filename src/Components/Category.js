@@ -11,7 +11,7 @@ const Category = () => {
               {category.img && (
                 <div className="relative overflow-hidden rounded-3xl">
                   <img
-                    src={category.img}
+                    src={`${process.env.PUBLIC_URL}${category.img}`}
                     alt={category.name}
                     className="md:w-full  w-[1400px]  h-full object-cover rounded-3xl hover:scale-110  transition-all ease-in-out duration-700"
                   />
@@ -28,7 +28,7 @@ const Category = () => {
                       className="relative  mb-4 overflow-hidden rounded-3xl"
                     >
                       <img
-                        src={image.img}
+                        src={`${process.env.PUBLIC_URL}${image.img}`}
                         alt={image.name}
                         className="md:w-full md:mb-3 w-[1400px] h-full object-cover rounded-3xl hover:scale-110  transition-all ease-in-out duration-700"
                       />
